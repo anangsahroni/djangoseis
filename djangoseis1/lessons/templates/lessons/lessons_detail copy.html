@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+{% load markdownify %}
+
+{% block content %}
+<div class="lesson-detail">
+    <div class="bodymd">
+        <img src="{{ lesson.thumb.url }}"/>
+        <h2>{{ lesson.detail }}</h2>
+        <p> {{ lesson.body | markdown | safe }}</p>
+        <p>{{ lesson.date }}</p>
+    </div>
+</div>
+
+{% endblock %}

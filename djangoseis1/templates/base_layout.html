@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lessons</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid" style="width: 1170px; margin: auto;">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">Belajar Gempabumi</a></h1>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li>
+                        <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                        </form>
+                    </li>
+                    <li>
+                        <a href="{% url 'lessons:create' %}">Create</a>
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                    <li><a href="{% url 'accounts:signup' %}"><span class="glyphicon glyphicon-user"></span>Signup</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="jumbotron" style="margin-top: 70px; padding: 80px;">
+            <div style="width: 1170px; margin: auto;">
+                <h1><a href="{% url 'lessons:list' %}">Lessons</a></h1>
+                <p>This is a webpage to learn about how earthquake works!</p>
+            </div>
+        </div>
+        <div class="container" style="margin-top:100px">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

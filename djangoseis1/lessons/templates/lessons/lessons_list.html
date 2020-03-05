@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<h1>Lessons List</h1>
+<div class="lessons">
+    {% for lesson in lessons %}
+        <div class="lesson">
+            <h2><a href="{% url 'lessons:detail' slug=lesson.slug %}">{{ lesson.title }}</a></h2>
+            <p> {{ lesson.snippet }}</p>
+            <p> {{ lesson.date }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
